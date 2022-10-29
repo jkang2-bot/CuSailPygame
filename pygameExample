@@ -1,0 +1,35 @@
+# Christopher Cheng
+
+import pygame
+pygame.init()
+background_color = (255, 0, 0)
+(width, height) = (500, 500)
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Let's try!")
+boatImage = pygame.image.load("/Users/christophercheng//Downloads//boat.jpeg").convert()
+boatImage = pygame.transform.scale(boatImage, (100, 100))
+screen.fill(background_color)
+pygame.display.flip()
+running = True
+x = 0
+y = 0
+vel = 10
+while running:
+    pygame.time.delay(1)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_LEFT]:
+            x -= vel
+        if keys[pygame.K_RIGHT]:
+            x += vel
+        if keys[pygame.K_UP]:
+            y -= vel
+        if keys[pygame.K_DOWN]:
+            y += vel
+        screen.fill(background_color)
+        screen.blit(boatImage, (x, y))
+        pygame.display.flip()
+        pygame.display.update()
+pygame.quit()
